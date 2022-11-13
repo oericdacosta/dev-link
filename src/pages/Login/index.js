@@ -3,10 +3,13 @@ import "./login.css";
 import {Logo} from "../../components/Logo";
 import { auth } from "../../Services/firebaseConnection";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     function handleLogin(e){
         e.preventDefault();//impede de atualizar a página ao submeter o form
@@ -17,10 +20,11 @@ export default function Login(){
         }
         signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-            console.log("Usuário logado com sucesso");
+            toast.success("Bem vindo de volta!!");
+            navigate("/admin", {replace: true });
         })
         .catch(() => {
-            console.log("Error");
+            toast.error("Erro ao tentar fazer o login!");
         })
     }
 
