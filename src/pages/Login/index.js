@@ -16,7 +16,7 @@ export default function Login(){
         e.preventDefault();//impede de atualizar a página ao submeter o form
 
         if(email === "" || password === ""){
-            alert("preencha todos os campos");
+            toast.warn("preencha todos os campos");
             return;
         }
         signInWithEmailAndPassword(auth, email, password)
